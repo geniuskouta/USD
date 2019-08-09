@@ -1,0 +1,12 @@
+.InputCurrency input {
+    margin: 10px;
+    height: 30px;
+}
+
+.numberInput {
+    width: 200px;
+}
+
+.CurrencyInput {
+    width: 10px;
+}

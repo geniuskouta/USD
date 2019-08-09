@@ -1,0 +1,9 @@
+div.DisplayResult {
+    margin-top: 5%;
+    margin-left: 2%;
+    height: 100px;
+    width: 280px;
+    transition: 0.3s;
+    opacity: 1.0;
+}
+
