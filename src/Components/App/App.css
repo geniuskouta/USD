@@ -14,5 +14,8 @@ h1{
 h2 {
   font-family: 'Poppins', sans-serif;
   font-size: 1.55rem;
-  color: white;
+}
+
+h3 {
+  font-family: 'Poppins', sans-serif;
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import './InputCurrency.css';
 
-
 class InputCurrency extends React.Component{
 	constructor(props){
 		super(props);
@@ -17,15 +16,21 @@ class InputCurrency extends React.Component{
 		}
 	}
 
-	handleCurrencyChange(e){
+	suggest() {
+		if(this.state.currency){
+			this.props.onSuggest(this.state.currency);
+		}
+	}
+
+ 	handleCurrencyChange(e){
         if(isNaN(e.target.value)){
-            e.target.value = e.target.value.toUpperCase();
+			e.target.value = e.target.value.toUpperCase();
         }else{
             e.target.value = '';
         }
 		this.setState({currency : e.target.value});
-    }
-    
+	}
+	    
     handleNumChange(e){
         if(isNaN( e.target.value)){
             e.target.value = '';
@@ -38,13 +43,27 @@ class InputCurrency extends React.Component{
 		if(e.key === 'Enter'){
 			this.convert();
 		}
+		if(typeof e.key == 'string'){
+			this.suggest();
+		}
 	}
 
 	render(){
+		
 		return(
 		<div className="InputCurrency">
-		  <input className="numberInput" placeholder="100" onKeyUp={this.handleKeyPress} onChange={this.handleNumChange} />
-		  <input className="currencyInput" placeholder="JPY" onKeyUp={this.handleKeyPress} onChange={this.handleCurrencyChange} />
+		  <input
+		  className="numberInput"
+		  placeholder="100"
+		  onKeyUp={this.handleKeyPress}
+		  onChange={this.handleNumChange} />
+		  <input
+		  className="currencyInput"
+		  placeholder="JPY"
+		  onKeyUp={this.handleKeyPress}
+		  onChange={this.handleCurrencyChange}
+		  onSuggest={this.suggest}
+		  />
 		</div>
 			);
 }
