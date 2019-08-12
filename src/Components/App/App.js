@@ -32,15 +32,6 @@ class App extends React.Component {
     console.log(this.state.Options);
   }
 
-  handleCurrencyChange(input){
-    if(isNaN(input)){
-    input = input.toUpperCase();
-    }else{
-        input.value = '';
-    }
-  this.setState({currency : input});
-  }
-
   render() {
   return (
     <div className="App">
