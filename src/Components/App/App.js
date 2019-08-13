@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../../logo.svg';
 import './App.css';
 import InputCurrency from '../InputCurrency/InputCurrency';
 import DisplayResult from '../DisplayResult/DisplayResult';
@@ -12,10 +11,13 @@ class App extends React.Component {
 		super(props);
     this.state = {
       DisplayResult: '',
-      Options: ''
+      options: ''
     }
     this.convert = this.convert.bind(this);
     this.suggest = this.suggest.bind(this);
+    this.currencyChange = this.currencyChange.bind(this);
+    this.numChange = this.numChange.bind(this);
+    this.currencySelect = this.currencySelect.bind(this);
   }
 
   convert(toCurrency, amount){
@@ -28,9 +30,24 @@ class App extends React.Component {
   }
 
   suggest(input){
-    this.setState({Options: Suggestion.showSuggestion(input)});
-    console.log(this.state.Options);
+    this.setState({options: Suggestion.showSuggestion(input)});
+    console.log(this.state.options);
   }
+
+  currencyChange(input){
+    this.setState({currency: input});
+    console.log(input);
+  }
+
+  numChange(input){
+    this.setState({num: input});
+  }
+
+  currencySelect(input){
+    this.setState({currency: input});
+    console.log(input + 'selected!');
+  }
+  
 
   render() {
   return (
@@ -39,9 +56,17 @@ class App extends React.Component {
       <InputCurrency 
       onConvert = {this.convert}
       onSuggest = {this.suggest}
+      onCurrencyChange = {this.currencyChange}
+      onNumChange = {this.numChange}
+      currency = {this.state.currency}
+      num = {this.state.num}
       />
       <SelectInput
-      suggestedOptions = {this.state.Options}
+      suggestedOptions = {this.state.options}
+      onCurrencySelect = {this.currencySelect}
+      onConvert = {this.convert}
+      currency = {this.state.currency}
+      num = {this.state.num}
       />
       <DisplayResult 
       convertedResult = {this.state.DisplayResult}

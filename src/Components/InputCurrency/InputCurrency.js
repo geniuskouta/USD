@@ -11,31 +11,31 @@ class InputCurrency extends React.Component{
 	}
 
 	convert() {
-		if(this.state.num && this.state.currency){
-			this.props.onConvert(this.state.currency, this.state.num);
+		if(this.props.num && this.props.currency){
+			this.props.onConvert(this.props.currency, this.props.num);
 		}
 	}
 
 	suggest() {
-		if(this.state.currency){
-			this.props.onSuggest(this.state.currency);
+		if(this.props.currency){
+			this.props.onSuggest(this.props.currency);
 		}
 	}
 
- 	handleCurrencyChange(e){
-        if(isNaN(e.target.value)){
+	handleCurrencyChange(e){
+		if(isNaN(e.target.value)){
 			e.target.value = e.target.value.toUpperCase();
-        }else{
-            e.target.value = '';
-        }
-		this.setState({currency : e.target.value});
+			this.props.onCurrencyChange(e.target.value);
+		}else{
+			e.target.value = '';
+		}	
 	}
-	    
+
     handleNumChange(e){
-        if(isNaN( e.target.value)){
+        if(isNaN(e.target.value)){
             e.target.value = '';
         }
-        this.setState({num : e.target.value})
+        this.props.onNumChange(e.target.value);
     }
 
 	//Enter key triggers the search
@@ -62,7 +62,6 @@ class InputCurrency extends React.Component{
 		  placeholder="JPY"
 		  onKeyUp={this.handleKeyPress}
 		  onChange={this.handleCurrencyChange}
-		  onSuggest={this.suggest}
 		  />
 		</div>
 			);
